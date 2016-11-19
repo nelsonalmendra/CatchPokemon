@@ -46,4 +46,59 @@ public class ApplicationTests
 		
 		assertEquals(2, grid.size());
 	}
+	
+	@Test
+	public void testNoMoves()
+	{
+		Grid grid = new Grid();
+		
+		assertEquals(1, grid.size());
+	}
+	
+	@Test
+	public void testNMovesSameDirection()
+	{
+		final int n = 100000;
+		
+		Grid grid = new Grid();
+		
+		for(int i=0; i<n; i++)
+			grid.moveNorth();
+		
+		assertEquals(n+1, grid.size());
+	}
+	
+	@Test
+	public void testNMovesOpositeDirection()
+	{
+		final int n = 100000;
+		
+		Grid grid = new Grid();
+		
+		for(int i=0; i<n; i++)
+			grid.moveNorth();
+		
+		for(int i=0; i<n; i++)
+			grid.moveSouth();
+		
+		assertEquals(n+1, grid.size());
+	}
+	
+	@Test
+	public void testNMoves()
+	{
+		final int n = 100000;
+		
+		Grid grid = new Grid();
+		
+		for(int i=0; i<n; i++)
+			grid.moveNorth();
+		
+		grid.moveEast();
+		
+		for(int i=0; i<n; i++)
+			grid.moveSouth();
+		
+		assertEquals((n+1)*2, grid.size());
+	}
 }
